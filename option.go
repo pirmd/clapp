@@ -1,4 +1,4 @@
-package app
+package clapp
 
 //Flag is a command line flag
 type Flag = Option

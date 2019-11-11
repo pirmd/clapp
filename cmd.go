@@ -1,8 +1,4 @@
-// Package app  provides simple support to build a command line application
-// that supports nested commands, flags and arguments parsing.  It does not aim
-// at be a feature-complete command line app builder but something simpler and
-// hopefully lean for simple use.
-package app
+package clapp
 
 import (
 	"fmt"

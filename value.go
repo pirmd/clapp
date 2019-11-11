@@ -1,4 +1,4 @@
-package app
+package clapp
 
 //This package provides helpers to derive value from string, like
 //strings input by a user (through dialog or command line options).

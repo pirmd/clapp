@@ -1,4 +1,4 @@
-package app
+package clapp
 
 //help gathers functions that generate text documentation about a given app.command
 

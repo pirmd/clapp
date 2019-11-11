@@ -1,4 +1,4 @@
-package app
+package clapp
 
 //manpage poposes some basic template for documentation in manpage-like
 //format.

@@ -1,4 +1,4 @@
-package app
+package clapp
 
 //api module file gathers helpers functions and method to declare in a verbose
 //manner commands with their flags, args and sub-commands.
