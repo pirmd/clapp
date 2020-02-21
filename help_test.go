@@ -49,5 +49,7 @@ func TestHelp(t *testing.T) {
 
 	out := new(bytes.Buffer)
 	PrintLongUsage(out, testApp, style.NewColorterm())
-	verify.MatchGolden(t, out.String(), "Help message is incorrectly formatted")
+	if failure := verify.MatchGolden(t.Name(), out.String()); failure != nil {
+		t.Errorf("Help message is incorrectly formatted.\n%v", failure)
+	}
 }

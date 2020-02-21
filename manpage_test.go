@@ -17,5 +17,7 @@ func TestManpage(t *testing.T) {
 	manDate = "2019-07-12"
 	PrintManpage(out, testApp, style.NewMan())
 
-	verify.MatchGolden(t, out.String(), "Manpage message is incorrectly formatted")
+	if failure := verify.MatchGolden(t.Name(), out.String()); failure != nil {
+		t.Errorf("Manpage message is incorrectly formatted.\n %v", failure)
+	}
 }

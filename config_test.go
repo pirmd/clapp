@@ -34,6 +34,8 @@ func TestConfigUnmarshalling(t *testing.T) {
 			t.Errorf("cannot read config '%s': %s", tc.in, err)
 		}
 
-		verify.Equal(t, cfg, tc.want, "reading config for %s failed", tc.in)
+		if failure := verify.Equal(cfg, tc.want); failure != nil {
+			t.Errorf("Reading config for %s failed.\n%v", tc.in, failure)
+		}
 	}
 }

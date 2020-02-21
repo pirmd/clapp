@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pirmd/cli/style"
+	"github.com/pirmd/style"
 )
 
 //ManSection identify the man section to which the command is belonging to It
