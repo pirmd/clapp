@@ -9,7 +9,7 @@ generation, config file parser and build version integration with git.
 `clapp` is probably not as features complete as other command-line application
 builders existing in the wild but tries to stay simple.
 
-# EXAMPLE
+## EXAMPLE
 
 ```go
 package main
@@ -79,18 +79,18 @@ func main() {
 }
 ```
 
-A slightly more complete use example with documentation generation can be
-found in [gostore](http://github.com/pirmd/gostore).
+A slightly more complete example with documentation generation can be found in
+[gostore](https://github.com/pirmd/gostore).
 
-# INSTALLATION
+## INSTALLATION
 Everything should work fine using go standard commands (`build`, `get`,
 `install`...).
 
-# USAGE
+## USAGE
 Running `go doc github.com/pirmd/clapp` should give you helpful guidelines on
 available features.
 
-# CONTRIBUTION
+## CONTRIBUTION
 If you feel like to contribute, just follow github guidelines on
 [forking](https://help.github.com/articles/fork-a-repo/) then [send a pull
 request](https://help.github.com/articles/creating-a-pull-request/)
