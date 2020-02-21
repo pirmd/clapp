@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	version = "v?.?.?"  //should be set-up at compile-time through ldflags -X github.com/pirmd/cli/app.version
-	build   = "unknown" //should be set-up at compile-time through ldflags -X github.com/pirmd/cli/app.build
+	version = "v?.?.?"  //should be set-up at compile-time through ldflags -X github.com/pirmd/clapp.version
+	build   = "unknown" //should be set-up at compile-time through ldflags -X github.com/pirmd/clapp.build
 )
 
 // Command represents an application. An application is a tree of commands

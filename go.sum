@@ -1,7 +1,8 @@
 github.com/pirmd/cli v0.3.0 h1:OW0248GRk/79lePS3g+Wqpua3BziEKPagBZ/ta0uGmQ=
 github.com/pirmd/cli v0.3.0/go.mod h1:MCAlgqKKTt8c0KK9tggXepX6mqo0ztZm6t2R5nNbZKY=
+github.com/pirmd/style v0.3.1 h1:kuIxpKaMEQMUYaM81Bzs6h4OLxDlqcNgR0ZYJpnS7/0=
+github.com/pirmd/style v0.3.1/go.mod h1:h1p0xPt7IAJwf08x84VYK3i3VhzJUhqzuEf2ofe0XQ4=
+github.com/pirmd/text v0.0.0-20191111165610-e9760a07aba4 h1:87kHcyMn0OfUxocFbEUnac5XNhfJiG3RfEoAa/3OQJE=
+github.com/pirmd/text v0.0.0-20191111165610-e9760a07aba4/go.mod h1:FBNvItiLIoO/jhO8dO35YtMt0wxxuIPBZnDKPxKh75U=
 github.com/pirmd/verify v0.2.0 h1:woyyRGbgZp4SnWGsMco3BCVwTfomkFZl/+xRKiGZ5FM=
 github.com/pirmd/verify v0.2.0/go.mod h1:/McQWCtPnQ52qjQCYc0JKdwFyTxd5oRfwtCUq9m+eG0=
-gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
-gopkg.in/yaml.v2 v2.2.5 h1:ymVxjfMaHvXD8RqPRmzHHsB3VvucivSkIAvJFDI5O3c=
-gopkg.in/yaml.v2 v2.2.5/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=

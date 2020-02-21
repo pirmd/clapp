@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pirmd/cli/app/configdir"
+	"github.com/pirmd/clapp/configdir"
 )
 
 //TODO(pirmd): If command is called using --config FILE flag, configuration will be read

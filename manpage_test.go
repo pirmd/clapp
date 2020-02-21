@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/pirmd/cli/style"
+	"github.com/pirmd/style"
 	"github.com/pirmd/verify"
 )
 

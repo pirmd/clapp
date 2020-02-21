@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/pirmd/cli/style"
+	"github.com/pirmd/style"
 )
 
 //PrintSimpleVersion outputs to w a command's minimal usage message
