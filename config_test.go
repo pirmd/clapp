@@ -28,6 +28,7 @@ func TestConfigUnmarshalling(t *testing.T) {
 		cmdCfg := Config{
 			Unmarshaller: json.Unmarshal,
 			Var:          &cfg,
+			ExpandEnv:    true,
 		}
 
 		if err := cmdCfg.load([]byte(tc.in)); err != nil {
