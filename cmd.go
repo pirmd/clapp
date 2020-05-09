@@ -26,7 +26,7 @@ type Command struct {
 
 	//Version contains command's version. It defaults to $VERSION ($BUILD)
 	//where $VERSION and $BUILD are set-up at compile time using ldflags
-	//directive (e.g. taking values from git describe). Provided 'go' script
+	//directive (e.g. taking values from git describe). Provided 'make' script
 	//gives an example.
 	Version string
 
