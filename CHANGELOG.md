@@ -1,6 +1,10 @@
 # Changelog
 
-## [0.4.0] - 2020.05.05
+## [0.5.0] - 2020-07-14
+## Add
+- add cumulative flags.
+
+## [0.4.0] - 2020-05-05
 ## Add
 - add ExpandEnv flag in 'Config' to allow automatic environment variables
   expansion when loading config files. Default to false, so previous behaviour

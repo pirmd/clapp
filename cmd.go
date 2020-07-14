@@ -15,50 +15,50 @@ var (
 // that can be nested. Each command is made of a set of flags, a set of args
 // and a set of sub-commands. An app is the 'root' command of this tree.
 type Command struct {
-	//Name is the command's name.
+	// Name is the command's name.
 	Name string
 
-	//Usage is a short explanation of what the command does.
+	// Usage is a short explanation of what the command does.
 	Usage string
 
-	//Description is a long description of the command.
+	// Description is a long description of the command.
 	Description string
 
-	//Version contains command's version. It defaults to $VERSION ($BUILD)
-	//where $VERSION and $BUILD are set-up at compile time using ldflags
-	//directive (e.g. taking values from git describe). Provided 'make' script
-	//gives an example.
+	// Version contains command's version. It defaults to 'VERSION (BUILD)'
+	// where VERSION and BUILD are set-up at compile time using ldflags
+	// directive (e.g. taking values from git describe). Provided 'make' script
+	// gives an example.
 	Version string
 
-	//Flags contains the set of command's flags
+	// Flags contains the set of command's flags
 	Flags Flags
 
-	//Args contains the set of command's arguments
+	// Args contains the set of command's arguments
 	Args Args
 
-	//SubCommands contains the set of command's sub-commands
+	// SubCommands contains the set of command's sub-commands
 	SubCommands Commands
 
-	//Config contains directive to manage command's configuration.
-	//If Config is nil, the managemnt of command's configuration is disable.
+	// Config contains directive to manage command's configuration.
+	// If Config is nil, the management of command's configuration is disable.
 	Config *Config
 
-	//Execute is the function called to run the command
+	// Execute is the function called to run the command
 	Execute func() error
 
-	//ShowHelp is a function that displays help about the command. It will be
-	//associated with the "help" sub-command if not nil.  you can also directly
-	//alter this behavious by declaring directly any further SubCommands or
-	//Flags that manage this situation.
+	// ShowHelp is a function that displays help about the command. It will be
+	// associated with the "help" sub-command if not nil. You can also directly
+	// alter this behaviour by declaring directly any further sub-commands or
+	// Flags that manage this situation.
 	ShowHelp func(c *Command)
 
-	//ShowVersion is a function that displays version information about the
-	//command. It will be associated with the "version" sub-command if not nil.
-	//you can also directly alter this behavious by declaring directly any
-	//further SubCommands or Flags that manage this situation.
+	// ShowVersion is a function that displays version information about the
+	// command. It will be associated with the "version" sub-command if not nil.
+	// you can also directly alter this behaviour by declaring directly any
+	// further SubCommands or Flags that manage this situation.
 	ShowVersion func(c *Command)
 
-	parents []*Command //list of parent commands, build dynamiccaly during processing of the commands
+	parents []*Command //list of parent commands, build dynamically during processing of the commands
 	cmdline []string
 }
 
@@ -114,9 +114,9 @@ func (c *Command) fullname() string {
 	return c.parents[len(c.parents)-1].fullname() + "-" + c.Name
 }
 
-//visitSubCommands iterates over all command's SubCommands including automatic
-//'version' or 'help' sub-commands that where not manually added to command's
-//sub-commands list.
+// visitSubCommands iterates over all command's SubCommands including automatic
+// 'version' or 'help' sub-commands that where not manually added to command's
+// sub-commands list.
 func (c *Command) visitSubCommands(fn func(*Command)) {
 	if h := c.autoHelpSubCommand(); h != nil {
 		fn(h)
@@ -200,10 +200,22 @@ func (c *Command) parseFlags() error {
 			if err := flag.value().Set("true"); err != nil {
 				return fmt.Errorf("invalid boolean flag %q", split[0])
 			}
+
 		case 2:
-			if err := flag.value().Set(split[1]); err != nil {
-				return fmt.Errorf("invalid value %q for flag %q", split[1], split[0])
+			switch {
+			case flag.isCumulative():
+				for _, s := range strings.Split(split[1], ",") {
+					if err := flag.value().Set(s); err != nil {
+						return fmt.Errorf("invalid value %q for flag %q", split[1], split[0])
+					}
+				}
+
+			default:
+				if err := flag.value().Set(split[1]); err != nil {
+					return fmt.Errorf("invalid value %q for flag %q", split[1], split[0])
+				}
 			}
+
 		default:
 			return fmt.Errorf("invalid flag assignment in %q: too many '='", c.cmdline[0])
 		}
@@ -249,7 +261,7 @@ func (c *Command) parseArgs() error {
 // Commands represents a set of commands and sub-commands
 type Commands []*Command
 
-//Add a command to a commands set
+// Add a command to a commands set
 func (c *Commands) Add(newcmd *Command) {
 	c.append(newcmd)
 }

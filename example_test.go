@@ -42,7 +42,7 @@ func Example() {
 	var fruit string
 	cmd.SubCommands.Add(&clapp.Command{
 		Name:  "eat",
-		Usage: "Give something to eat to your monkey. Be aware that lelectronic monkey eats only bananas.",
+		Usage: "Give something to eat to your monkey. Be aware that electronic monkey eats only bananas.",
 		Args: clapp.Args{
 			{
 				Name:  "fruit",

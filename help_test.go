@@ -35,7 +35,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 	testCmd31 := testCmd3.NewCommand("test31", "Test a sub-sub-command")
 	_ = testCmd31.NewInt64Arg("test31_arg", "Test Int64 arg of a sub-sub-command", false)
 
-	testCmd4 := testApp.NewCommand("test4", "Test another sub-command with unlimited args")
+	testCmd4 := testApp.NewCommand("test4", "Test another sub-command with unlimited args and flags")
+	_ = testCmd4.NewStringsFlag("stringsflag", "Test41 Strings flag of sub-command")
 	_ = testCmd4.NewStringsArg("test4_arg", "Test an arg with unlimited number of strings", false)
 
 	testCmd5 := testApp.NewCommand("test5", "Test another sub-command with optional args")

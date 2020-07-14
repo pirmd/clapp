@@ -64,6 +64,7 @@ func TestSimpleApp(t *testing.T) {
 func TestCmdlineFlags(t *testing.T) {
 	var testFlagBool bool
 	var testFlagString string
+	var testFlagStrings []string
 
 	testApp := &Command{
 		Name:  "testApp",
@@ -78,6 +79,11 @@ func TestCmdlineFlags(t *testing.T) {
 				Name:  "string",
 				Usage: "Test String flag",
 				Var:   &testFlagString,
+			},
+			{
+				Name:  "strings",
+				Usage: "Test Strings flag",
+				Var:   &testFlagStrings,
 			},
 		},
 	}
@@ -119,6 +125,18 @@ func TestCmdlineFlags(t *testing.T) {
 		testApp.cmdline = []string{"--", "--unknown"}
 		if err := testApp.parseFlags(); err != nil {
 			t.Errorf("Parsing failed, %v", err)
+		}
+	})
+
+	t.Run("Cumulative flag parsing", func(t *testing.T) {
+		testFlagStrings = []string{}
+		testApp.cmdline = []string{"--strings=testing,is,fun"}
+		if err := testApp.parseFlags(); err != nil {
+			t.Fatalf("Parsing failed: %v", err)
+		}
+
+		if !reflect.DeepEqual(testFlagStrings, []string{"testing", "is", "fun"}) {
+			t.Errorf("Strings flag is not recognized (string is %#v)", testFlagStrings)
 		}
 	})
 }

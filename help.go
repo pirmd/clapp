@@ -1,6 +1,6 @@
 package clapp
 
-//help gathers functions that generate text documentation about a given app.command
+// help gathers functions that generate text documentation about a given app.command
 
 import (
 	"fmt"
@@ -11,12 +11,12 @@ import (
 	"github.com/pirmd/style"
 )
 
-//PrintSimpleVersion outputs to w a command's minimal usage message
+// PrintSimpleVersion outputs to w a command's minimal usage message
 func PrintSimpleVersion(w io.Writer, c *Command, st style.Styler) {
 	fmt.Fprint(w, st.Paragraph(fmtName(c)+" "+c.Version+" - "+c.Usage))
 }
 
-//PrintSimpleUsage outputs to w a command's minimal usage message
+// PrintSimpleUsage outputs to w a command's minimal usage message
 func PrintSimpleUsage(w io.Writer, c *Command, st style.Styler) {
 	PrintSimpleVersion(w, c, st)
 
@@ -26,7 +26,7 @@ func PrintSimpleUsage(w io.Writer, c *Command, st style.Styler) {
 	}
 }
 
-//PrintLongUsage outputs a complete help message similar to a manpage
+// PrintLongUsage outputs a complete help message similar to a manpage
 func PrintLongUsage(w io.Writer, c *Command, st style.Styler) {
 	fmt.Fprint(w, st.Header(1)("Name"))
 	fmt.Fprint(w, st.Paragraph(fmtName(c)+" - "+c.Usage))
@@ -70,7 +70,7 @@ func PrintLongUsage(w io.Writer, c *Command, st style.Styler) {
 	}
 }
 
-//ShowVersion prints to os.Stderr a short information about command's version
+// ShowVersion prints to os.Stderr a short information about command's version
 func ShowVersion(c *Command) {
 	if c.Version == "" {
 		c.Version = fmt.Sprintf("%s (build %s)", version, build)
@@ -80,20 +80,20 @@ func ShowVersion(c *Command) {
 	PrintSimpleVersion(os.Stderr, c, style.CurrentStyler)
 }
 
-//ShowUsage prints to os.Stderr a command's minimal usage message
+// ShowUsage prints to os.Stderr a command's minimal usage message
 func ShowUsage(c *Command) {
 	//TODO: allow customization of style.CurrentStyler
 	PrintSimpleUsage(os.Stderr, c, style.CurrentStyler)
 }
 
-//ShowHelp prints to os.Stderr a command's detailed help message
+// ShowHelp prints to os.Stderr a command's detailed help message
 func ShowHelp(c *Command) {
 	//TODO: allow customization of style.CurrentStyler
 	PrintLongUsage(os.Stderr, c, style.CurrentStyler)
 }
 
-//GenerateHelpFile generates a help file in the markdown format for the given
-//command. Help file is build after the LongUsage template.
+// GenerateHelpFile generates a help file in the markdown format for the given
+// command. Help file is build after the PrintLongUsage template.
 func GenerateHelpFile(c *Command) error {
 	fname := fmtName(c) + ".md"
 
@@ -132,6 +132,8 @@ func fmtFlag(flag *Option, st style.Styler) string {
 	switch {
 	case flag.isBool():
 		return fmt.Sprintf("--%s", st.Bold(flag.Name))
+	case flag.isCumulative():
+		return fmt.Sprintf("--%s=%[2]s,...,%[2]s", st.Bold(flag.Name), st.Italic(st.Upper(flag.Name)))
 	default:
 		return fmt.Sprintf("--%s=%s", st.Bold(flag.Name), st.Italic(st.Upper(flag.Name)))
 	}
