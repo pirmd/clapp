@@ -11,28 +11,23 @@ import (
 	"github.com/pirmd/style"
 )
 
-// PrintSimpleVersion outputs to w a command's minimal usage message
+// PrintSimpleVersion outputs to w a command's name and version
 func PrintSimpleVersion(w io.Writer, c *Command, st style.Styler) {
 	fmt.Fprint(w, st.Paragraph(fmtName(c)+" "+c.Version+" - "+c.Usage))
 }
 
 // PrintSimpleUsage outputs to w a command's minimal usage message
 func PrintSimpleUsage(w io.Writer, c *Command, st style.Styler) {
-	PrintSimpleVersion(w, c, st)
-
-	fmt.Fprint(w, st.Header(1)("Synopsis:"))
-	for _, s := range fmtSynopsis(c, st) {
-		fmt.Fprint(w, st.Tab()(st.Paragraph(s)))
-	}
-}
-
-// PrintLongUsage outputs a complete help message similar to a manpage
-func PrintLongUsage(w io.Writer, c *Command, st style.Styler) {
 	fmt.Fprint(w, st.Header(1)("Name"))
-	fmt.Fprint(w, st.Paragraph(fmtName(c)+" - "+c.Usage))
+	PrintSimpleVersion(w, c, st)
 
 	fmt.Fprint(w, st.Header(1)("Synopsis"))
 	fmt.Fprint(w, st.Paragraph(strings.Join(fmtSynopsis(c, st), "\n")))
+}
+
+// PrintLongUsage outputs to w a complete help message similar to a manpage
+func PrintLongUsage(w io.Writer, c *Command, st style.Styler) {
+	PrintSimpleUsage(w, c, st)
 
 	fmt.Fprint(w, st.Header(1)("Description"))
 	fmt.Fprint(w, st.Paragraph(description(c)))

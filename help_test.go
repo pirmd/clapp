@@ -11,7 +11,7 @@ import (
 func buildTestApp() *Command {
 	testApp := New("cli.test", "A test for my minimalist cli app building lib")
 
-	testApp.Version = "3.14159"
+	testApp.Version = "v3.14159"
 	testApp.Description = `cli.test is mainly here to test and demonstrate the set-up of a commandline application using the small *cli* library.
 
 Like many other test involving text issuance, using the famous _lorem ipsum_ pattern is a must.
