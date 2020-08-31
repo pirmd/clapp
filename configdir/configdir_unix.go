@@ -8,8 +8,6 @@ import (
 	"strings"
 )
 
-//TODO(pirmd): or /usr/local/etc (?)
-
 var (
 	// SystemWide points to system-wide configuration path
 	// On Unix systems, it is either /etc or first XDG_CONFIG_DIRS
@@ -21,9 +19,8 @@ var (
 )
 
 func init() {
-	//TODO(pirmd): switch to go1.13 os.UserConfigDir()
-	if os.Getenv("XDG_CONFIG_HOME") != "" {
-		PerUser = os.Getenv("XDG_CONFIG_HOME")
+	if xdg := os.Getenv("XDG_CONFIG_HOME"); xdg != "" {
+		PerUser = xdg
 	}
 
 	if os.Getenv("XDG_CONFIG_DIRS") != "" {
