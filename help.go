@@ -177,11 +177,27 @@ func fmtCmd(c *Command, st style.Styler) (s string) {
 
 func fmtSynopsis(c *Command, st style.Styler) []string {
 	prefix := st.Bold(c.Name)
+
+	var s []string
+
+	// Help and version sub-commands don't benefit of any flags so synopsis is
+	// simplified by not displaying them for these cases.
+
+	if h := c.autoHelpSubCommand(); h != nil {
+		for _, syn := range fmtSynopsis(h, st) {
+			s = append(s, fmt.Sprintf("%s %s", prefix, syn))
+		}
+	}
+
+	if v := c.autoVersionSubCommand(); v != nil {
+		for _, syn := range fmtSynopsis(v, st) {
+			s = append(s, fmt.Sprintf("%s %s", prefix, syn))
+		}
+	}
+
 	for _, flag := range c.Flags {
 		prefix = fmt.Sprintf("%s [%s]", prefix, fmtFlag(flag, st))
 	}
-
-	var s []string
 
 	if len(c.Args) > 0 {
 		a := prefix
@@ -195,12 +211,10 @@ func fmtSynopsis(c *Command, st style.Styler) []string {
 		s = append(s, prefix)
 	}
 
-	if len(c.SubCommands) > 0 {
-		c.visitSubCommands(func(cmd *Command) {
-			for _, syn := range fmtSynopsis(cmd, st) {
-				s = append(s, fmt.Sprintf("%s %s", prefix, syn))
-			}
-		})
+	for _, cmd := range c.SubCommands {
+		for _, syn := range fmtSynopsis(cmd, st) {
+			s = append(s, fmt.Sprintf("%s %s", prefix, syn))
+		}
 	}
 
 	if len(s) == 0 {

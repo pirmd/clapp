@@ -6,12 +6,12 @@ cli.test v3.14159 - A test for my minimalist cli app building lib
 
 .SH Synopsis
 .PP
+\fBcli.test\fP \fBhelp\fP
+\fBcli.test\fP \fBversion\fP
 \fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fIstring\fP
-\fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBhelp\fP
-\fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBversion\fP
 \fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest\fP \fItest_arg\fP
 \fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest2\fP \fItest2_arg1\fP \fItest2_arg2\fP
-\fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest3\fP [--\fBstringflag\fP=\fISTRINGFLAG\fP] \fBhelp\fP
+\fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest3\fP \fBhelp\fP
 \fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest3\fP [--\fBstringflag\fP=\fISTRINGFLAG\fP] \fBtest31\fP \fItest31_arg\fP
 \fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest4\fP [--\fBstringsflag\fP=\fISTRINGSFLAG\fP,...,\fISTRINGSFLAG\fP] \fItest4_arg\fP ...
 \fBcli.test\fP [--\fBbool\fP] [--\fBflag\fP=\fIFLAG\fP] \fBtest5\fP [\fItest5_arg\fP ...]

@@ -1,7 +1,12 @@
 # Changelog
 
+## [0.5.1] - 2020-09-03
+## Modified
+- Clean synopsis format by not displaying generic flags for 'help' or 'version'
+  sub-commands.
+
 ## [0.5.0] - 2020-07-14
-## Add
+## Added
 - add cumulative flags.
 
 ## [0.4.0] - 2020-05-05
