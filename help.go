@@ -71,20 +71,17 @@ func ShowVersion(c *Command) {
 		c.Version = fmt.Sprintf("%s (build %s)", version, build)
 	}
 
-	//TODO: allow customization of style.CurrentStyler
-	PrintSimpleVersion(os.Stderr, c, style.CurrentStyler)
+	PrintSimpleVersion(os.Stderr, c, style.NewTerm())
 }
 
 // ShowUsage prints to os.Stderr a command's minimal usage message
 func ShowUsage(c *Command) {
-	//TODO: allow customization of style.CurrentStyler
-	PrintSimpleUsage(os.Stderr, c, style.CurrentStyler)
+	PrintSimpleUsage(os.Stderr, c, style.NewTerm())
 }
 
 // ShowHelp prints to os.Stderr a command's detailed help message
 func ShowHelp(c *Command) {
-	//TODO: allow customization of style.CurrentStyler
-	PrintLongUsage(os.Stderr, c, style.CurrentStyler)
+	PrintLongUsage(os.Stderr, c, style.NewTerm())
 }
 
 // GenerateHelpFile generates a help file in the markdown format for the given
